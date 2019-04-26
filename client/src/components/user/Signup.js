@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { Redirect } from "react-router";
-import { Input, Label } from "reactstrap";
 import axios from "axios";
 import { NotificationManager } from "react-notifications";
 import { ValidatorForm } from "react-form-validator-core";

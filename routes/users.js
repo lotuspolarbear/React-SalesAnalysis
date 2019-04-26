@@ -89,9 +89,16 @@ router.get("/getAllUsers", authService.verifyTokenExistance, (req, res) => {
     if(err) {
         res.sendStatus(403);
     } else {
-        User.find()
-		.sort({ subAcctId: -1 })
-		.then(accounts => res.json(accounts));
+        User.getAllUsers((err, users) => {
+			if (err) {
+				return res.json({
+                    success: false,
+                    msg: "Something went wrong. Please refresh the page."
+                });
+			} else {
+				return res.json({ success: true, users: users });
+			}
+		});
     }
 });
 

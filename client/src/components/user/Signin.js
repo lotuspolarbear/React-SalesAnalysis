@@ -33,7 +33,8 @@ class Signin extends Component {
 			.then(res => {
 				if (res.data.success) {					
 					localStorage.setItem("token", res.data.token);
-					if(res.data.userType == true){
+					if(res.data.userType === true){
+						localStorage.setItem("admin", true);
 						th.setState({ isAdmin: true });
 						th.props.checkAdmin(true);
 					}

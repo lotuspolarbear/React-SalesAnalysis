@@ -48,8 +48,8 @@ module.exports.checkUser = function(requestedUser, callback) {
 	User.findOne({ email: requestedUser.email, password: requestedUser.password }, callback);
 };
 
-module.exports.getUsers = function(callback) {
-	User.find()
+module.exports.getAllUsers = function(callback) {
+	User.find({ userType: false })
 		.sort({ _id: -1 })
 		.exec(callback);
 };

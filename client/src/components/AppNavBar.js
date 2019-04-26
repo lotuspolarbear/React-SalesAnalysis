@@ -6,9 +6,6 @@ import {
 	NavbarToggler,
 	Nav,
 	NavItem,
-	UncontrolledDropdown,
-	DropdownToggle,
-	DropdownMenu,
 	Container
 } from "reactstrap";
 
@@ -30,7 +27,7 @@ class AppNavbar extends Component {
 			<div>
 				<Navbar color='dark' dark expand='sm' className='mb-5'>
 					<Container>
-						<Link className='navbar-brand' to='/'>CSV Analysis</Link>
+						<Link className='navbar-brand' to='/'>Sales Analysis</Link>
 						<NavbarToggler onClick={this.toggle} />
 						<Collapse isOpen={this.state.isOpen} navbar>
 							<Nav className='ml-auto' navbar>

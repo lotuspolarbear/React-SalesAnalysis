@@ -1,18 +1,21 @@
 // Importing packages
 import React, { Component } from "react";
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { BrowserRouter as Router, Route, withRouter } from "react-router-dom";
 import { NotificationContainer } from "react-notifications";
 // Importing components
-import AppNavbar from "./components/AppNavBar";
+import AppNavBar from "./components/AppNavBar";
 import Signin from "./components/user/Signin";
 import Signup from "./components/user/Signup";
 import Signout from "./components/user/Signout";
+import AdminDashboard from "./components/admin/Dashboard";
+import UserDashboard from "./components/user/Dashboard";
 // Importing packages' styles
 import "jquery";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min";
 import "react-notifications/lib/notifications.css";
 import "./App.css";
+import { createBrowserHistory as history } from 'history';
 
 class App extends Component {
 	constructor(props) {
@@ -27,6 +30,9 @@ class App extends Component {
 		if (localStorage.getItem("token")) {
 			this.setState({ isLoggedin: true });
 		}
+		if (localStorage.getItem("admin")) {
+			this.setState({ isAdmin: true });
+		}
 	}
 
 	checkAdmin = (flag) => {
@@ -39,17 +45,26 @@ class App extends Component {
 
 	render() {
 		return (
-			<Router>
+			<Router history={history}>
 				<div className='App'>
 					<NotificationContainer />
-					<AppNavbar isLoggedin = {this.state.isLoggedin} isAdmin = {this.state.isAdmin}/>
+					<AppNavBar isLoggedin = {this.state.isLoggedin} isAdmin = {this.state.isAdmin}/>
 
 					{this.state.isLoggedin && (
 						<React.Fragment>
 							<Route exact path = '/signout' render={() => <Signout checkLogin = {this.checkLogin} checkAdmin = {this.checkAdmin} />} />
 						</React.Fragment>
 					)}
-
+					{this.state.isLoggedin && this.state.isAdmin &&(
+						<React.Fragment>
+							<Route exact path = '/admin/dashboard' component = {AdminDashboard} />
+						</React.Fragment>
+					)}
+					{this.state.isLoggedin && !this.state.isAdmin &&(
+						<React.Fragment>
+							<Route exact path = '/user/dashboard' component = {UserDashboard} />
+						</React.Fragment>
+					)}
 					{!this.state.isLoggedin && (
 						<React.Fragment>
 							<Route exact path = '/' render = {() => <Signin checkLogin = {this.checkLogin} checkAdmin = {this.checkAdmin} />} />

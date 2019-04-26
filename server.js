@@ -4,7 +4,8 @@ const bodyParser = require("body-parser");
 const path = require("path");
 
 // Importing routes
-const user = require("./routes/user");
+const users = require("./routes/users");
+const files = require("./routes/files");
 
 const app = express();
 // Bodyparser Middleware
@@ -18,7 +19,8 @@ mongoose
 	.catch(err => console.log(err));
 // Use Routes
 
-app.use("/users", user);
+app.use("/users", users);
+app.use("/files", files);
 
 // Serve static assets if in production
 if (process.env.NODE_ENV === "production") {
