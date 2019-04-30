@@ -1,10 +1,15 @@
 # React-SalesAnalysis
 
-//Install packages for back-end
-npm install
+## Available Scripts
 
-//Install packages for front-end(in client folder)
-npm install
+To install packages for back-end, in the root directory:
 
-//Run the project
-npm run dev
+### `npm install`
+
+To install packages for front-end, in the "client" directory:
+
+### `npm install`
+
+To start the project, in the root directory:
+
+### `npm run dev`
